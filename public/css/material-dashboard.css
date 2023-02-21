@@ -792,7 +792,7 @@ h6,
   font-family: inherit;
   font-weight: 400;
   line-height: 1.2;
-  color: inherit;
+  color: darkgray;
 }
 
 h1,
@@ -16879,7 +16879,7 @@ thead.thead-inverse th,
 
 body {
   background-color: #eee;
-  color: #3C4858;
+  color: darkgray;
   font-weight: 300;
 }
 

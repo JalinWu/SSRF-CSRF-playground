@@ -12,4 +12,18 @@ router.get('/dashboard', ensureAuthenticated, (req, res) =>
   })
 );
 
+// SSRF
+router.get('/ssrf', ensureAuthenticated, (req, res) =>
+  res.render('ssrf', {
+    user: req.user
+  })
+);
+
+// CSRF
+router.get('/csrf', ensureAuthenticated, (req, res) =>
+  res.render('csrf', {
+    user: req.user
+  })
+);
+
 module.exports = router;
