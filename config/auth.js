@@ -4,8 +4,8 @@ module.exports = {
       if (Object.values(req.sessionStore.sessions).length > 0) {
 
         var sessions = JSON.parse(Object.values(req.sessionStore.sessions)[0]);
-        console.log(sessions);
-        if (sessions.passport.user != undefined) {
+        // console.log(sessions);
+        if (sessions.passport && sessions.passport.user != undefined) {
           return next();
         }
         
