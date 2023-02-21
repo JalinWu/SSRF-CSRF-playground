@@ -1,7 +1,7 @@
 <div class="row mt-5">
   <div class="col-md-6 m-auto">
     <div class="card card-body">
-      <h1 class="text-center mb-3">
+      <h1 class="text-center mb-3" style="color: darkgray">
         <i class="fas fa-user-plus"></i> Register
       </h1>
       <% include ./partials/messages %>
@@ -13,7 +13,6 @@
             id="name"
             name="name"
             class="form-control"
-            placeholder="Enter Name"
             value="<%= typeof name != 'undefined' ? name : '' %>"
           />
         </div>
@@ -24,7 +23,6 @@
             id="email"
             name="email"
             class="form-control"
-            placeholder="Enter Email"
             value="<%= typeof email != 'undefined' ? email : '' %>"
           />
         </div>
@@ -35,7 +33,6 @@
             id="password"
             name="password"
             class="form-control"
-            placeholder="Create Password"
             value="<%= typeof password != 'undefined' ? password : '' %>"
           />
         </div>
@@ -46,15 +43,14 @@
             id="password2"
             name="password2"
             class="form-control"
-            placeholder="Confirm Password"
             value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
           />
         </div>
-        <button type="submit" class="btn btn-primary btn-block">
+        <button type="submit" class="btn btn-info btn-block">
           Register
         </button>
       </form>
-      <p class="lead mt-4">Have An Account? <a href="/users/login">Login</a></p>
+      <p class="lead mt-4" style="color: darkgray">Have An Account? <a href="/users/login">Login</a></p>
     </div>
   </div>
 </div>
