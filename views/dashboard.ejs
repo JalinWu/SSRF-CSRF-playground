@@ -1,3 +1,27 @@
 <h1 class="mt-4">Dashboard</h1>
-<p class="lead mb-3">Welcome <%= user.name %></p>
+<p class="lead mb-3">Welcome <%= user.name %>
+</p>
+<p class="lead mb-3">Points:
+<p id="myPoints"></p>
+</p>
 <a href="/users/logout" class="btn btn-secondary">Logout</a>
+
+<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+<script>
+    function start() {
+        console.log("Hey");
+        $.ajax({
+            type: 'GET',
+            url: '/points/get',
+            error: function (xhr) {
+                console.log('Oops, something went wrong.');
+            },
+            success: function (res) {
+                console.log(res);
+                $("#myPoints").text(res);
+
+            }
+        });
+    }
+    start();
+</script>
