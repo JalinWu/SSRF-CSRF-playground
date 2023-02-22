@@ -50,26 +50,24 @@
                             <p class="card-category">輸入轉出數量以及轉入對象</p>
                         </div>
                         <div class="card-body">
-                            <form>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label class="bmd-label-floating">轉出數量</label>
-                                            <input type="number" class="form-control">
-                                        </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">轉出數量</label>
+                                        <input type="number" class="form-control" id="transferPts">
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label class="bmd-label-floating">轉入對象</label>
-                                            <input type="text" class="form-control">
-                                        </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">轉入對象</label>
+                                        <input type="text" class="form-control" id="transferTo">
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-info pull-right">確認</button>
-                                <div class="clearfix"></div>
-                            </form>
+                            </div>
+                            <button type="submit" class="btn btn-info pull-right" onclick="doTransfer()">確認</button>
+                            <div class="clearfix"></div>
                         </div>
                     </div>
                 </div>
@@ -81,8 +79,11 @@
                             </a>
                         </div>
                         <div class="card-body">
-                            <h4 class="card-title">100</h4>
-                            <i class="material-icons">refresh</i>
+                            <h4 class="card-title" id="myPoints"></h4>
+                            <button type="submit" class="btn btn-default btn-round btn-just-icon"
+                                onclick="refreshPoints()">
+                                <i class="material-icons" id="refreshPts">refresh</i>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -96,7 +97,10 @@
                                 <h4 class="card-title">轉出紀錄</h4>
                                 <p class="card-category">近5筆轉出紀錄</p>
                             </div>
-                            <i class="material-icons">refresh</i>
+                            <button type="submit" class="btn btn-success btn-round btn-just-icon"
+                                onclick="refreshTransferList()">
+                                <i class="material-icons">refresh</i>
+                            </button>
                         </div>
                         <div class="card-body table-responsive">
                             <table class="table table-hover">
@@ -140,23 +144,68 @@
 
 
 
-<script src="https://code.jquery.com/jquery-3.6.3.min.js"
-    integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 <script>
-    function start() {
-        console.log("Hey");
+    function refreshPoints() {
         $.ajax({
             type: 'GET',
             url: '/points/get',
             error: function (xhr) {
+                $("#myPoints").text("Error");
                 console.log('Oops, something went wrong.');
             },
             success: function (res) {
-                console.log(res);
                 $("#myPoints").text(res);
 
             }
         });
     }
-    start();
+    function doTransfer() {
+        var pt = $("#transferPts").val();
+        var to = $("#transferTo").val();
+        $.ajax({
+            type: 'GET',
+            url: `/points/transfer?to=${to}&pt=${pt}`,
+            error: function (xhr) {
+                console.log('Oops, something went wrong.');
+            },
+            success: function (res) {
+                $("#myPoints").text(res);
+                $("#transferPts").val("");
+                $("#transferTo").val("");
+                refreshTransferList();
+            }
+        });
+    }
+    function refreshTransferList() {
+        $.ajax({
+            type: 'GET',
+            url: `/points/transferList`,
+            error: function (xhr) {
+                console.log('Oops, something went wrong.');
+            },
+            success: function (res) {
+                console.log(res);
+                $('tbody').empty();
+                for (var i = res.length-1; i > res.length-6; i--) {
+                    $('tbody').append(`
+                        <tr>
+                            <td>
+                                ${res[i].id}
+                            </td>
+                            <td>
+                                ${res[i].to}
+                            </td>
+                            <td>
+                                ${res[i].pt}
+                            </td>
+                        </tr>
+                    `);
+                }
+
+            }
+        });
+    }
+
+    refreshPoints();
+    refreshTransferList();
 </script>
