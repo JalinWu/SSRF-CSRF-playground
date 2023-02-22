@@ -1,55 +1,115 @@
 <div class="wrapper">
-        <div class="sidebar" data-color="azure" data-background-color="black"
-            data-image="http://localhost:5000/img/sidebar-2.jpg">
-            <div class="logo text-center">Playground</div>
-            <div class="sidebar-wrapper">
-                <ul class="nav">
-                    <li class="nav-item active  ">
-                        <a class="nav-link" href="./ssrf">
-                            <i class="material-icons">dashboard</i>
-                            <p>SSRF</p>
-                        </a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="./csrf">
-                            <i class="material-icons">library_books</i>
-                            <p>CSRF</p>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="main-panel">
-            <h1 class="mt-4">SSRF</h1>
-            <p class="lead mb-3">Welcome <%= user.name %>
-            </p>
-            <p class="lead mb-3">Points:
-                <p id="myPoints"></p>
-            </p>
-            <a href="/users/logout" class="btn btn-secondary">Logout</a>
-    
+    <div class="sidebar" data-color="azure" data-background-color="black"
+        data-image="http://localhost:5000/img/sidebar-2.jpg">
+        <div class="logo text-center">Playground</div>
+        <div class="sidebar-wrapper">
+            <ul class="nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="./ssrf">
+                        <i class="material-icons">dashboard</i>
+                        <p>SSRF</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="./csrf">
+                        <i class="material-icons">library_books</i>
+                        <p>CSRF</p>
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
-    
-    
-    
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
-        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-    <script>
-        function start() {
-            console.log("Hey");
-            $.ajax({
-                type: 'GET',
-                url: '/points/get',
-                error: function (xhr) {
-                    console.log('Oops, something went wrong.');
-                },
-                success: function (res) {
-                    console.log(res);
-                    $("#myPoints").text(res);
-    
-                }
-            });
-        }
-        start();
-    </script>
+    <div class="main-panel">
+        <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
+            <div class="container-fluid">
+                <div class="navbar-wrapper">
+                    <a class="navbar-brand" href="javascript:void(0)">SSRF Demo</a>
+                </div>
+                <div class="collapse navbar-collapse justify-content-end">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:void(0)">
+                                <i class="material-icons">person</i>
+                                <%= user.name %>
+                                    <p class="d-lg-none d-md-block">
+                                        Account
+                                    </p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- <a href="/users/logout" class="btn btn-secondary">Logout</a> -->
+        <div class="content">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <!-- <a href="/users/register" class="btn btn-info text-center">生成優惠碼<i class="material-icons">refresh</i></a> -->
+                            <button type="submit" class="btn btn-success">生成優惠碼<i class="material-icons">refresh</i></button>
+                            <h3>lksdjfimdk</h3>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header card-header-info">
+                            <h4 class="card-title">儲值</h4>
+                            <p class="card-category">輸入優惠碼，儲值點數</p>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">優惠碼</label>
+                                            <input type="number" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-info pull-right">確認</button>
+                                <div class="clearfix"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card card-profile">
+                        <div class="card-avatar">
+                            <a href="#pablo">
+                                <img class="img" src="/img/point.png" />
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">100</h4>
+                            <i class="material-icons">refresh</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"
+    integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+<script>
+    function start() {
+        console.log("Hey");
+        $.ajax({
+            type: 'GET',
+            url: '/points/get',
+            error: function (xhr) {
+                console.log('Oops, something went wrong.');
+            },
+            success: function (res) {
+                console.log(res);
+                $("#myPoints").text(res);
+
+            }
+        });
+    }
+    start();
+</script>
