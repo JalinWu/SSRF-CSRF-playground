@@ -95,7 +95,7 @@
                             style="display: flex; justify-content: space-between; align-items: center">
                             <div>
                                 <h4 class="card-title">轉出紀錄</h4>
-                                <p class="card-category">近5筆轉出紀錄</p>
+                                <!-- <p class="card-category">近5筆轉出紀錄</p> -->
                             </div>
                             <button type="submit" class="btn btn-success btn-round btn-just-icon"
                                 onclick="refreshTransferList()">
@@ -186,7 +186,7 @@
             success: function (res) {
                 console.log(res);
                 $('tbody').empty();
-                for (var i = res.length-1; i > res.length-6; i--) {
+                for (var i = res.length-1; i >= 0; i--) {
                     $('tbody').append(`
                         <tr>
                             <td>

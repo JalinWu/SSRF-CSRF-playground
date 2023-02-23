@@ -114,7 +114,7 @@
     function genCoupon() {
         $.ajax({
             type: 'GET',
-            url: '/coupon/get',
+            url: '/coupon',
             error: function (xhr) {
                 console.log('Oops, something went wrong.');
             },
@@ -127,9 +127,9 @@
     function useCoupon() {
         $.ajax({
             type: 'POST',
-            url: '/coupon',
+            url: `/coupon/${$("#inputCoupon").val()}`,
             contentType: 'application/json',
-            data: JSON.stringify({coupon: $("#inputCoupon").val()}),
+            // data: JSON.stringify({coupon: $("#inputCoupon").val()}),
             error: function (xhr) {
                 console.log('Oops, something went wrong.');
             },

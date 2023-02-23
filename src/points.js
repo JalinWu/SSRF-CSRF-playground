@@ -1,9 +1,8 @@
 
-
 class Points {
     constructor() {
     }
-    points = 500;
+    static points = 500;
 }
 
 exports.Points = Points;
