@@ -3,6 +3,7 @@ const expressLayouts = require('express-ejs-layouts');
 const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
+const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const app = express();
@@ -18,6 +19,7 @@ app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 
 // Express body parser
+app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Express session
@@ -48,6 +50,8 @@ app.use(function(req, res, next) {
 app.use('/', require('./routes/index.js'));
 app.use('/users', require('./routes/users.js'));
 app.use('/points', require('./routes/points.js'));
+app.use('/coupon', require('./routes/coupon.js'));
+app.use('/internal', require('./routes/internal.js'));
 
 const PORT = process.env.PORT || 5000;
 

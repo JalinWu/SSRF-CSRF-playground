@@ -47,8 +47,8 @@
                     <div class="card">
                         <div class="card-body">
                             <!-- <a href="/users/register" class="btn btn-info text-center">生成優惠碼<i class="material-icons">refresh</i></a> -->
-                            <button type="submit" class="btn btn-success">生成優惠碼<i class="material-icons">refresh</i></button>
-                            <h3>lksdjfimdk</h3>
+                            <button type="submit" class="btn btn-success" onclick="genCoupon()">生成優惠碼<i class="material-icons">refresh</i></button>
+                            <h3 id="coupon"></h3>
                             <div class="clearfix"></div>
                         </div>
                     </div>
@@ -58,18 +58,16 @@
                             <p class="card-category">輸入優惠碼，儲值點數</p>
                         </div>
                         <div class="card-body">
-                            <form>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label class="bmd-label-floating">優惠碼</label>
-                                            <input type="number" class="form-control">
-                                        </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">優惠碼</label>
+                                        <input type="text" class="form-control" id="inputCoupon">
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-info pull-right">確認</button>
-                                <div class="clearfix"></div>
-                            </form>
+                            </div>
+                            <button type="submit" class="btn btn-info pull-right" onclick="useCoupon()">確認</button>
+                            <div class="clearfix"></div>
                         </div>
                     </div>
                 </div>
@@ -81,8 +79,11 @@
                             </a>
                         </div>
                         <div class="card-body">
-                            <h4 class="card-title">100</h4>
-                            <i class="material-icons">refresh</i>
+                            <h4 class="card-title" id="myPoints"></h4>
+                            <button type="submit" class="btn btn-default btn-round btn-just-icon"
+                                onclick="refreshPoints()">
+                                <i class="material-icons" id="refreshPts">refresh</i>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -96,20 +97,50 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"
     integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 <script>
-    function start() {
-        console.log("Hey");
+    function refreshPoints() {
         $.ajax({
             type: 'GET',
             url: '/points/get',
             error: function (xhr) {
+                $("#myPoints").text("Error");
                 console.log('Oops, something went wrong.');
             },
             success: function (res) {
-                console.log(res);
                 $("#myPoints").text(res);
 
             }
         });
     }
-    start();
+    function genCoupon() {
+        $.ajax({
+            type: 'GET',
+            url: '/coupon/get',
+            error: function (xhr) {
+                console.log('Oops, something went wrong.');
+            },
+            success: function (res) {
+                $("#coupon").text(res);
+
+            }
+        });
+    }
+    function useCoupon() {
+        $.ajax({
+            type: 'POST',
+            url: '/coupon',
+            contentType: 'application/json',
+            data: JSON.stringify({coupon: $("#inputCoupon").val()}),
+            error: function (xhr) {
+                console.log('Oops, something went wrong.');
+            },
+            success: function (res) {
+                // todo
+
+            }
+        });
+    }
+
+
+
+    refreshPoints();
 </script>
