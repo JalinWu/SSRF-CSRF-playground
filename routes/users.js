@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const file = "./account.db";
 const sqlite3 = require("sqlite3").verbose();
+const dotenv = require("dotenv").config();
 var db = new sqlite3.Database(file);
 const { forwardAuthenticated } = require('../config/auth');
 
@@ -49,7 +50,7 @@ router.post('/register', (req, res) => {
       
       db.all(sqlFindEmail, email, (err, row) => {
 
-        if (row.length > 0) {
+        if (row.length > 0) { 
           errors.push({ msg: 'Email already exists' });
           res.render('register', {
             errors,
@@ -80,6 +81,7 @@ router.post('/register', (req, res) => {
 
 // Login
 router.post('/login', (req, res, next) => {
+  console.log(req);
   passport.authenticate('local', {
     successRedirect: '/ssrf',
     failureRedirect: '/users/login',
@@ -95,10 +97,23 @@ router.get('/logout', (req, res) => {
 });
 
 // Login Page
-router.get('/login', forwardAuthenticated, (req, res) => res.render('login'));
-
+router.get('/login', forwardAuthenticated, (req, res) => 
+  res.render('login', {
+    channel_id: process.env.CHANNEL_ID
+  })
+);
+  
 // Register Page
-router.get('/register', forwardAuthenticated, (req, res) => res.render('register'));
+router.get('/register', forwardAuthenticated, (req, res) => 
+  res.render('register', {
+    channel_id: process.env.CHANNEL_ID
+  })
+);
+
+// Redirect
+router.post('/redirect', passport.authenticate('local'), (req, res, next) => {
+  res.send("login success");
+});
 
 
 module.exports = router;

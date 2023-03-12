@@ -50,7 +50,20 @@
           Register
         </button>
       </form>
-      <p class="lead mt-4">Have An Account? <a href="/users/login">Login</a></p>
+      <div class="mt-4">
+        <img src="/img/btn_login_base.png" alt="" style="height: 40px"
+          onclick="lineLogin()">
+      </div>
+      <p class="lead mt-4" style="color:darkgray">Have An Account? <a href="/users/login">Login</a></p>
     </div>
   </div>
 </div>
+
+<script>
+    const cid = '<%= channel_id %>'
+    const redirect_uri = "http://localhost:5000/callback"
+    function lineLogin() {
+      var link = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${cid}&state=login&redirect_uri=${redirect_uri}&scope=openid%20profile`;
+      window.location.href = link;
+    }
+  </script>
