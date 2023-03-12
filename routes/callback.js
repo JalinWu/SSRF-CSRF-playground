@@ -27,16 +27,18 @@ router.get('/', (req, res) => {
     const data = {
       grant_type: 'authorization_code',
       code: code,
+      redirect_uri: redirectUri,
       client_id: clientId,
-      client_secret: clientSecret,
-      redirect_uri: redirectUri
+      client_secret: clientSecret
     };
 
     axios.post('https://api.line.me/oauth2/v2.1/token', new URLSearchParams(data).toString(), config)
       .then(response => {
 
         // parse jwt
-        var { id_token } = response.data;
+        var { id_token, access_token } = response.data;
+        console.log("id_token: \n", id_token);
+        global.accessToken = access_token;
         jwt.verify(id_token, clientSecret, (err, decoded) => {
           if (err) {
             console.log('Invalid token');

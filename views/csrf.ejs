@@ -16,6 +16,12 @@
                         <p>CSRF</p>
                     </a>
                 </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="./line-info">
+                        <i class="material-icons">account_circle</i>
+                        <p>LINE Info</p>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
@@ -186,7 +192,7 @@
             success: function (res) {
                 console.log(res);
                 $('tbody').empty();
-                for (var i = res.length-1; i >= 0; i--) {
+                for (var i = res.length - 1; i >= 0; i--) {
                     $('tbody').append(`
                         <tr>
                             <td>

@@ -19,4 +19,11 @@ router.get('/csrf', ensureAuthenticated, (req, res) =>
   })
 );
 
+// LINE Info
+router.get('/line-info', ensureAuthenticated, (req, res) =>
+  res.render('lineinfo', {
+    user: req.user
+  })
+);
+
 module.exports = router;

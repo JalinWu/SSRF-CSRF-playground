@@ -32,10 +32,8 @@
 </div>
 
 <script>
-    const cid = '<%= channel_id %>'
-    const redirect_uri = "http://localhost:5000/callback"
-    function lineLogin() {
-      var link = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${cid}&state=login&redirect_uri=${redirect_uri}&scope=openid%20profile`;
-      window.location.href = link;
-    }
-  </script>
+  let channel_id = '<%= channel_id %>'
+  function lineLogin() {
+    LineLoginPage();
+  }
+</script>

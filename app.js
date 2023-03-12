@@ -53,6 +53,7 @@ app.use('/points', require('./routes/points.js'));
 app.use('/coupon', require('./routes/coupon.js'));
 app.use('/internal', require('./routes/internal.js'));
 app.use('/callback', require('./routes/callback.js'));
+app.use('/line', require('./routes/line.js'));
 
 const PORT = process.env.PORT || 5000;
 
