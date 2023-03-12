@@ -6,8 +6,8 @@ It's a teaching material for practicing SSRF, CSRF and LINE Login, which is base
 
 ## Screenshots
 
-![image](https://raw.githubusercontent.com/JalinWu/SSRF-CSRF-playground/master/public/img/demo1.png)
-![image](https://raw.githubusercontent.com/JalinWu/SSRF-CSRF-playground/master/public/img/demo2.png)
+![image](https://raw.githubusercontent.com/JalinWu/SSRF-CSRF-playground/master/public/img/demo-1.png)
+![image](https://raw.githubusercontent.com/JalinWu/SSRF-CSRF-playground/master/public/img/demo-2.png)
 
 ## Usage
 
