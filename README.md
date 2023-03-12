@@ -1,16 +1,22 @@
-# Sign in and Sign up page
+# SSRF-CSRF-playground
 
-It's a teaching material for practicing Sign in and Sign up process, which is based on Node.js and SQLite. Have fun and enjoy it.
+[![GitHub stars](https://img.shields.io/github/stars/JalinWu/SSRF-CSRF-playground)](https://github.com/JalinWu/SSRF-CSRF-playground/stargazers) ![GitHub All Releases](https://img.shields.io/github/downloads/JalinWu/SSRF-CSRF-playground/total)
 
-### Usage
+It's a teaching material for practicing SSRF, CSRF and LINE Login, which is based on Node.js and SQLite. Have fun and enjoy it.
+
+## Screenshots
+
+![image](https://raw.githubusercontent.com/JalinWu/SSRF-CSRF-playground/master/public/img/demo1.png)
+![image](https://raw.githubusercontent.com/JalinWu/SSRF-CSRF-playground/master/public/img/demo2.png)
+
+## Usage
 
 ```sh
 $ npm install
 ```
 
 ```sh
-$ npm start
-# Or run with Nodemon
+# Run with Nodemon
 $ npm run dev
 
 # Visit http://localhost:5000
