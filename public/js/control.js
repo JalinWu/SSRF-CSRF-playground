@@ -1,13 +1,16 @@
 
-
+/******************************
+ * Update parameters below
+ ******************************/
 function LineLoginPage() {
+    var response_type = "code";
     var redirect_uri = "http://localhost:5000/callback";
     var state = genRandomString(12);
-    var scope="profile%20openid"
+    var scope=""
 
     var link = `
 https://access.line.me/oauth2/v2.1/authorize?
-response_type=code&
+response_type=${response_type}&
 client_id=${channel_id}&
 redirect_uri=${redirect_uri}&
 state=${state}&
